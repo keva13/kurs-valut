@@ -1,0 +1,113 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<title>Курс валют</title>
+
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+	<script src="lib/canvasjs.min.js"></script>
+	<script src="lib/npm.js"></script>
+	<script src="lib/bootstrap.js"></script>
+</head>
+<body>
+
+<header>
+	<ul> 
+		<li><a href="#headInfo">Гривня сьогодні</a></li>
+		<li><a href="#chart">Гривня за тиждень</a></li>
+		<li id="go" class="konverter-button">Конвертер валют</li>
+	</ul>
+	<div class="btn-group">
+		<button onclick="GetUSD()" type="button" id="btn-usd" class="btn btn-primary">USD</button>
+		<button onclick="GetEUR()" type="button" id="btn-eur" class="btn btn-default">EUR</button>
+	</div>
+
+</header>
+
+<div id='headInfo' class="headInfo">
+	<div class="dateToday">
+		<span class="today-text">Сьогодні</span><br>
+		<span class="dateToday-date"></span>
+	</div>
+	<div class="head-kurs">
+		<table>
+			<tr><th>       </th><th>              НБУ</th><th>     	     Банки</th></tr>
+			<tr><th>Купити </th><td class="nbu-buy"> </td><td class="bank-buy"></td></tr>
+			<tr><th>Продати</th><td class="nbu-sale"></td><td class="bank-sale"></td></tr>
+		</table>
+	</div>
+</div>
+
+<div class="btn-group">
+  <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Вибрати банк <span class="caret"></span></button>
+    <ul id='dropdown-option' class="dropdown-menu scrollable-menu">
+      <li><a onclick='selectBank(0)'>НБУ</a></li>
+      <li><a onclick='selectBank(1)'>Приват Банк</a></li>
+   </ul>
+</div>
+
+<div id='chart'>
+<div class="EUR" id="chartContainerEUR0" style="height: 400px; width: 100%;">
+</div>
+<div class="USD" id="chartContainerUSD0" style="height: 400px; width: 100%;">
+</div>
+<div class="EUR" id="chartContainerEUR1" style="height: 400px; width: 100%;">
+</div>
+<div class="USD" id="chartContainerUSD1" style="height: 400px; width: 100%;">
+</div>
+</div>
+
+
+
+
+
+
+<div id="modal_form">
+	<div class="modal-header">
+      Конвертер валют
+      <span id="modal_close">X</span>
+	</div>
+	
+	<div class="modal-body row">
+		<div class="modal-buy-sale">
+			Я хочу
+			<div class="btn-group">
+				<button onclick="modal_Buy()" type="button" id="modal-buy"  class="btn btn-primary">Купити</button>
+				<button onclick="modal_Sale()" type="button" id="modal-sale" class="btn btn-default">Продати</button>
+			</div>
+		</div>
+
+		<div class="modal-getSum">
+        <input onblur='clearInterval(focusinput);' onfocus='focusinput = setInterval("modal_getSum()",200)' class="form-control col-xs-3 money" type="number" value='100'>Суму: 
+        </div>
+
+		<div class="modal-selectValute">
+			<div class="btn-group">
+				<button onclick="modal_select_USD()" type="button" id="modal_select_USD"  class="btn btn-primary">USD</button>
+				<button onclick="modal_select_EUR()" type="button" id="modal_select_EUR" class="btn btn-default">EUR</button>
+				<button onclick="modal_select_UAH()" type="button" id="modal_select_UAH" class="btn btn-default">UAH</button>
+			</div>
+        </div>
+
+        <div class="table">
+		<table>
+			<tr class='notRemove'><th></th><th class="valute1">EUR</th><th class="valute2">UAH</th></tr>
+
+			<tr class='notRemove'><th>НБУ</th><td class="valNbu1"></td><td class="valNbu2"></td></tr>
+
+
+		</table> 
+        </div>
+	</div>
+      
+</div>
+<div id="overlay"></div>
+
+
+
+<script src="js/changeValute.js"></script>
+<script src="js/chartRender.js"></script>
+<script src="js/convert.js"></script>
+</body>
+</html>
