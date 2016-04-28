@@ -7,9 +7,10 @@ a:link {
 	color: #6E6E6E;
 	text-decoration: none;
 }
-a:visited { text-decoration: none; color: #6E6E6E;} 
-a:active { text-decoration: none; color: #6E6E6E;}
+a:visited {cursor: pointer; text-decoration: none; color: #6E6E6E;} 
+a:active {cursor: pointer; text-decoration: none; color: #6E6E6E;}
 a:hover{
+	cursor: pointer;
 	transition: 0.3s;
 	color: #2E2E2E;
 	text-decoration: none;
